@@ -12,7 +12,7 @@ if [ -d "$folderPath" ]; then
     outputExecutable="$scriptDir/a.out"
 
     # Compile the C++ code using the provided g++ command with the parameters
-    compileCommand="g++ -Wall -Wextra -Wconversion -static -O2 -std=c++20 $folderPath/main.cpp -o $outputExecutable"
+    compileCommand="clang++ -Wall -Wextra -Wconversion -O2 -std=c++20 $folderPath/main.cpp -o $outputExecutable"
 
     # Execute the compile command
     eval $compileCommand
