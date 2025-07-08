@@ -19,6 +19,13 @@ if (Test-Path $folderPath) {
     if (Test-Path $outputExecutable) {
         # Display the location of the executable
         Write-Host "Compilation successful. Executable created at: $outputExecutable"
+        
+        # Execute the compiled program
+        Write-Host "Executing the program..."
+        Write-Host "----------------------------------------"
+        & $outputExecutable
+        Write-Host "----------------------------------------"
+        Write-Host "Program execution completed."
     } else {
         Write-Host "Compilation failed."
     }
