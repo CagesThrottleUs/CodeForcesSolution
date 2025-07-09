@@ -37,13 +37,18 @@ cat > "$folder_name/main.cpp" << 'EOF'
 /**
  * Template for fast I/O for competitive programming
  */
-auto do_fast_io() -> void {
+auto do_fast_io() -> void 
+{
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
 }
 
 // Your functions and other stuff here
+
+namespace Solution 
+{
+} // namespace Solution
 
 /**
  * Main function
