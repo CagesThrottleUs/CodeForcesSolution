@@ -37,7 +37,7 @@ cat > "$folder_name/main.cpp" << 'EOF'
 /**
  * Template for fast I/O for competitive programming
  */
-auto do_fast_io() -> void 
+auto do_fast_io() -> void
 {
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
@@ -46,21 +46,23 @@ auto do_fast_io() -> void
 
 // Your functions and other stuff here
 
-namespace Solution 
+namespace Solution
 {
 } // namespace Solution
 
 /**
  * Main function
  */
-auto main() -> int {
+auto main() -> int
+{
     // Fast I/O for competitive programming
     do_fast_io();
 
     // Your code here
-    
+
     return 0;
 }
+
 EOF
 
 if [ $? -eq 0 ]; then
