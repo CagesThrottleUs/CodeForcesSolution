@@ -32,6 +32,7 @@ cat > "$folder_name/main.cpp" << 'EOF'
 #include <iostream>
 
 auto main() -> int {
+    // Fast I/O for competitive programming
     std::ios_base::sync_with_stdio(false);
     std::cin.tie(nullptr);
     std::cout.tie(nullptr);
