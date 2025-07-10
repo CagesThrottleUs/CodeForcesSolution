@@ -46,6 +46,9 @@ auto do_fast_io() -> void
 
 // Your functions and other stuff here
 
+/**
+ * The namespace that would contain the solution to the problem piece by piece
+ */
 namespace Solution
 {
 } // namespace Solution
