@@ -2,9 +2,7 @@
  * Sort your headers here
  */
 #include <iostream> // for std::cin, std::cout
-#include <map>      // for std::map
 #include <string>   // for std::to_string
-#include <vector>   // for std::vector
 
 /**
  * Template for fast I/O for competitive programming
@@ -24,10 +22,10 @@ auto do_fast_io() -> void
 namespace Solution
 {
 
-constexpr int MIN_TOTAL_ELEMENTS = 2;
-constexpr int MAX_TOTAL_ELEMENTS = 100;
-constexpr int MIN_ELEMENT_VALUE = 1;
-constexpr int MAX_ELEMENT_VALUE = 100;
+constexpr int MIN_TOTAL_CASES = 2;     // minimum number of test cases in the problem statement
+constexpr int MAX_TOTAL_CASES = 100;   // maximum number of test cases in the problem statement
+constexpr int MIN_ELEMENT_VALUE = 1;   // minimum value of an element in the problem statement
+constexpr int MAX_ELEMENT_VALUE = 100; // maximum value of an element in the problem statement
 
 /**
  * The struct that would contain the data collected from the input
@@ -48,7 +46,7 @@ struct DataCollected
     [[nodiscard]] auto calculate_moves() const -> std::size_t
     {
         std::size_t total_moves{moves_for_max_element() + moves_for_min_element()};
-        if (max_element_position() > min_element_position())
+        if (max_element_pos > min_element_pos)
         {
             total_moves -= 1;
         }
@@ -62,15 +60,6 @@ struct DataCollected
      */
     [[nodiscard]] auto moves_for_max_element() const -> std::size_t
     {
-        return max_element_position();
-    }
-
-    /**
-     * Calculates the position of the maximum element
-     * @return the position of the maximum element
-     */
-    [[nodiscard]] auto max_element_position() const -> std::size_t
-    {
         return max_element_pos;
     }
 
@@ -80,17 +69,12 @@ struct DataCollected
      */
     [[nodiscard]] auto moves_for_min_element() const -> std::size_t
     {
-        return total_elements - min_element_position() - 1;
-    }
-
-    [[nodiscard]] auto min_element_position() const -> std::size_t
-    {
-        return min_element_pos;
+        return total_elements - min_element_pos - 1;
     }
 };
 
 /**
- * Reads the total number of test cases
+ * Helper function to read the total number of test cases from standard input
  * @return the total number of test cases
  */
 auto read_total_test_cases() -> std::size_t
@@ -100,10 +84,10 @@ auto read_total_test_cases() -> std::size_t
     {
         throw std::runtime_error("Failed to read input");
     }
-    if (total_test_cases < MIN_TOTAL_ELEMENTS || total_test_cases > MAX_TOTAL_ELEMENTS)
+    if (total_test_cases < MIN_TOTAL_CASES || total_test_cases > MAX_TOTAL_CASES)
     {
-        throw std::runtime_error("Invalid total elements must be between " + std::to_string(MIN_TOTAL_ELEMENTS) +
-                                 " and " + std::to_string(MAX_TOTAL_ELEMENTS));
+        throw std::runtime_error("Invalid total elements must be between " + std::to_string(MIN_TOTAL_CASES) + " and " +
+                                 std::to_string(MAX_TOTAL_CASES));
     }
     return static_cast<std::size_t>(total_test_cases);
 }
@@ -118,22 +102,18 @@ auto read_input() -> DataCollected
 
     data_collected.total_elements = read_total_test_cases();
 
-    std::string errors;
-
     for (std::size_t i = 0; i < data_collected.total_elements; ++i)
     {
         int element{};
         if (!(std::cin >> element))
         {
-            errors += "Failed to read input at index " + std::to_string(i) + "\n";
-            continue;
+            throw std::runtime_error("Failed to read input at index " + std::to_string(i));
         }
 
         if (element < MIN_ELEMENT_VALUE || element > MAX_ELEMENT_VALUE)
         {
-            errors += "Invalid element must be between " + std::to_string(MIN_ELEMENT_VALUE) + " and " +
-                      std::to_string(MAX_ELEMENT_VALUE) + " at index " + std::to_string(i) + "\n";
-            continue;
+            throw std::runtime_error("Invalid element must be between " + std::to_string(MIN_ELEMENT_VALUE) + " and " +
+                                     std::to_string(MAX_ELEMENT_VALUE) + " at index " + std::to_string(i));
         }
 
         if (i == 0)
@@ -163,11 +143,6 @@ auto read_input() -> DataCollected
         {
             data_collected.max_element_pos = std::min(data_collected.max_element_pos, i);
         }
-    }
-
-    if (!errors.empty())
-    {
-        throw std::runtime_error(errors);
     }
 
     return data_collected;
