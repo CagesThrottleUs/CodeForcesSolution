@@ -32,7 +32,7 @@ cat > "$folder_name/main.cpp" << 'EOF'
 /**
  * Sort your headers here
  */
-#include <iostream>
+#include <iostream> // for std::cin, std::cout
 
 /**
  * Template for fast I/O for competitive programming
