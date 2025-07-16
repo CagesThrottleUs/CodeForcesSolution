@@ -15,8 +15,5 @@
   ],
   "C_Cpp.codeAnalysis.clangTidy.codeAction.formatFixes": true,
   "C_Cpp.clang_format_sortIncludes": true,
-  "C_Cpp.formatting": "clangFormat",
-  "files.associations": {
-    "stdexcept": "cpp"
-  }
+  "C_Cpp.formatting": "clangFormat"
 }
