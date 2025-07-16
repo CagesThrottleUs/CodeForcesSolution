@@ -104,7 +104,7 @@ struct InputParams
  */
 auto read_input() -> InputParams
 {
-    InputParams params{0, 0};
+    InputParams params{.n = 0, .m = 0};
     if (!(std::cin >> params.n >> params.m))
     {
         throw std::runtime_error("Failed to read input");
