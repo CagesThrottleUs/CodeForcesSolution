@@ -1,7 +1,12 @@
 #!/bin/bash
 
-# Prompt for folder name
-read -p "Enter the folder name containing main.cpp: " folderName
+# Check if folder name is provided as command line argument
+if [ $# -eq 1 ]; then
+    folderName="$1"
+else
+    # Prompt for folder name if not provided as argument
+    read -p "Enter the folder name containing main.cpp: " folderName
+fi
 
 # Check if the folder exists at the same level as the script
 scriptDir="$(cd "$(dirname "${BASH_SOURCE[0]}")" && pwd)"
