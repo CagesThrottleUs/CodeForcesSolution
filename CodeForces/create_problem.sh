@@ -56,7 +56,7 @@ namespace Solution
 /**
  * Main function
  */
-auto main() -> int
+auto main() noexcept -> int
 {
     // Fast I/O for competitive programming
     do_fast_io();
