@@ -2,14 +2,20 @@
 
 # Script to create a new CodeForces problem folder with main.cpp template
 
-# Prompt for folder name
-echo "Enter the CodeForces problem folder name (e.g., 1000A, 1001B, etc.):"
-read folder_name
-
-# Check if folder name is provided
-if [ -z "$folder_name" ]; then
-    echo "Error: No folder name provided."
-    exit 1
+# Check if command line argument is provided
+if [ -n "$1" ]; then
+    folder_name="$1"
+    echo "Using folder name from command line: $folder_name"
+else
+    # Prompt for folder name
+    echo "Enter the CodeForces problem folder name (e.g., 1000A, 1001B, etc.):"
+    read folder_name
+    
+    # Check if folder name is provided
+    if [ -z "$folder_name" ]; then
+        echo "Error: No folder name provided."
+        exit 1
+    fi
 fi
 
 # Check if folder already exists
