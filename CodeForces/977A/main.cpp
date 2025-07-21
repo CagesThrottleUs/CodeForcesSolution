@@ -33,6 +33,15 @@ enum class PROGRAM_MODE : std::uint8_t
 };
 
 constexpr auto CURRENT_PROGRAM_MODE = PROGRAM_MODE::SOLVE;
+constexpr auto ENABLE_DEBUG = (CURRENT_PROGRAM_MODE == PROGRAM_MODE::DEBUG);
+
+template <typename T> constexpr auto debug_log(T &&message) noexcept -> void
+{
+    if constexpr (ENABLE_DEBUG)
+    {
+        std::cout << std::forward<T>(message) << '\n';
+    }
+}
 
 /**
  * Input struct for the solution
@@ -45,11 +54,8 @@ struct Input
     auto operate() noexcept -> std::int32_t
     {
         auto result = static_cast<std::int32_t>(n);
-        if (CURRENT_PROGRAM_MODE == PROGRAM_MODE::DEBUG)
-        {
-            std::cout << "START STATE: n=" << n << ", k=" << static_cast<std::int32_t>(k) << '\n';
-        }
-        while (k > static_cast<std::uint8_t>(0))
+        debug_log("START STATE: n=" + std::to_string(n) + ", k=" + std::to_string(static_cast<std::int32_t>(k)));
+        while (k > 0U)
         {
             if (result % BASE_10 == 0)
             {
@@ -60,11 +66,9 @@ struct Input
                 result--;
             }
             k--;
-            if (CURRENT_PROGRAM_MODE == PROGRAM_MODE::DEBUG)
-            {
-                std::cout << "AFTER OPERATION: n=" << result << ", k=" << static_cast<std::int32_t>(k) << '\n';
-                std::cout << "CONDITION for k: " << (k > static_cast<std::uint8_t>(0)) << '\n';
-            }
+            debug_log("AFTER OPERATION: n=" + std::to_string(result) +
+                      ", k=" + std::to_string(static_cast<std::int32_t>(k)));
+            // debug_log("CONDITION for k: " + std::to_string(k > static_cast<std::uint8_t>(0)));
         }
         return result;
     }
