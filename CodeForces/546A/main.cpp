@@ -1,7 +1,7 @@
 /**
  * Sort your headers here
  */
-#include <algorithm> // for std::maz
+#include <algorithm> // for std::max
 #include <cstdint>   // for std::int64_t, std::uint32_t
 #include <iostream>  // for std::cin, std::cout
 
